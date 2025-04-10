@@ -35,16 +35,14 @@ export default function SimuladorAltstreet() {
     setLoading(true);
     setResultado(null);
     try {
-      const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbx0jXRCa14-A7RrJYrusgSrVAdr5se3lPbHTTf3wB9HHhkIAPIXqTDRqtGIf8KYsgIt/exec',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        }
-      );
+     await fetch("https://script.google.com/macros/s/AKfycbx0jXRCa14-A7RrJYrusgSrVAdr5se3lPbHTTf3wB9HHhkIAPIXqTDRqtGIf8KYsgIt/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ contents: formData }), // Este formato está compatível com o script atual
+});
+
 
       const result = await response.json();
       setResultado(result);
