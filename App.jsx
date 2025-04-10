@@ -38,17 +38,15 @@ export default function SimuladorAltstreet() {
       const idProjeto = Math.random().toString(36).substr(2, 9).toUpperCase();
       const dadosComId = { ...formData, IdProjeto: idProjeto };
 
-const response = await fetch(
-  'https://webhook.site/24c83b79-5b79-4f92-9935-b10a7564c047',
-
-        {
-          method: 'POST',
-          body: JSON.stringify(dadosComId),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+const response = await fetch('https://webhook.site/24c83b79-5b79-4f92-9935-b10a7564c047', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(formData),
+  mode: 'cors',
+});
+;
 
       const result = await response.json();
       setResultado(result);
