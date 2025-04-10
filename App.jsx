@@ -35,19 +35,18 @@ export default function SimuladorAltstreet() {
     setLoading(true);
     setResultado(null);
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbx0jXRCa14-A7RrJYrusgSrVAdr5se3lPbHTTf3wB9HHhkIAPIXqTDRqtGIf8KYsgIt/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxYPzeaQ9KPNLB-2s17dM2sW0TZYocg_iKlfogAXgc/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ contents: formData }),
+        body: JSON.stringify({ contents: formData })
       });
 
       const result = await response.json();
       setResultado(result);
     } catch (error) {
-      console.error("Erro ao calcular:", error);
-      alert("Erro ao calcular. Verifique os dados e tente novamente.");
+      alert('Erro ao calcular. Verifique os dados e tente novamente.');
     } finally {
       setLoading(false);
     }
