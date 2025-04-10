@@ -35,9 +35,8 @@ export default function SimuladorAltstreet() {
   setLoading(true);
   setResultado(null);
 
-  // Verificar os dados antes de enviar
   console.log('Dados enviados:', formData);
-  alert(JSON.stringify(formData, null, 2)); // Para debug visual
+  alert(JSON.stringify(formData, null, 2));
 
   try {
     const response = await fetch('https://webhook.site/24c83b79-5b79-4f92-9935-b10a7564c047', {
@@ -46,6 +45,7 @@ export default function SimuladorAltstreet() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
+      mode: 'cors', // ⚠️ importante!
     });
 
     const result = await response.json();
@@ -56,7 +56,7 @@ export default function SimuladorAltstreet() {
     setLoading(false);
   }
 };
-;
+
 
   return (
     <div className="max-w-3xl mx-auto p-4">
