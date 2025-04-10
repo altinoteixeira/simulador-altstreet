@@ -39,14 +39,15 @@ export default function SimuladorAltstreet() {
   alert(JSON.stringify(formData, null, 2));
 
   try {
-    const response = await fetch('https://webhook.site/24c83b79-5b79-4f92-9935-b10a7564c047', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-      mode: 'cors', // ⚠️ importante!
-    });
+    const response = await fetch('https://script.google.com/macros/s/AKfycbx0jXRCa14-A7RrJYrusgSrVAdr5se3lPbHTTf3wB9HHhkIAPIXqTDRqtGIf8KYsgIt/exec', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(formData),
+  mode: 'no-cors', // ✅ necessário para bypass inicial de CORS
+});
+
 
     const result = await response.json();
     setResultado(result);
