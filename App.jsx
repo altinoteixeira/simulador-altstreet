@@ -32,30 +32,31 @@ export default function SimuladorAltstreet() {
   };
 
   const handleCalcular = async () => {
-    setLoading(true);
-    setResultado(null);
-    try {
-      const idProjeto = Math.random().toString(36).substr(2, 9).toUpperCase();
-      const dadosComId = { ...formData, IdProjeto: idProjeto };
+  setLoading(true);
+  setResultado(null);
 
-const response = await fetch('https://webhook.site/24c83b79-5b79-4f92-9935-b10a7564c047', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(formData),
-  mode: 'cors',
-});
+  // Verificar os dados antes de enviar
+  console.log('Dados enviados:', formData);
+  alert(JSON.stringify(formData, null, 2)); // Para debug visual
+
+  try {
+    const response = await fetch('https://webhook.site/24c83b79-5b79-4f92-9935-b10a7564c047', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+    setResultado(result);
+  } catch (error) {
+    alert('Erro ao calcular. Verifique os dados e tente novamente.');
+  } finally {
+    setLoading(false);
+  }
+};
 ;
-
-      const result = await response.json();
-      setResultado(result);
-    } catch (error) {
-      alert('Erro ao calcular. Verifique os dados e tente novamente.');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="max-w-3xl mx-auto p-4">
